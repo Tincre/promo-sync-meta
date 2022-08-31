@@ -1,30 +1,10 @@
-export function generateEventIdClientSide(): string | undefined {
-  if (typeof window !== 'undefined') {
-    const gtmContainerId = 'GTM-57QS65R';
-    if (typeof window?.google_tag_manager !== 'undefined') {
-      var gtmData =
-        window.google_tag_manager[gtmContainerId].dataLayer.get('gtm');
-      return gtmData.start + '.' + gtmData.uniqueEventId;
-    } else {
-      return window.crypto.randomUUID().replaceAll('-', '');
-    }
-  }
-}
-export const ALLOWED_PROMO_EVENTS = [
-  'PromoEventPageView',
-  'PromoEventAddPaymentInfo',
-  'PromoEventAddToCart',
-  'PromoEventCompleteRegistration',
-  'PromoEventDonate',
-  'PromoEventInitiateCheckout',
-  'PromoEventLead',
-  'PromoEventPurchase',
-  'PromoEventSearch',
-  'PromoEventStartTrial',
-  'PromoEventSubmitApplication',
-  'PromoEventSubscribe',
-  'PromoEventViewContent',
-];
+/* Copyright Tincre (Musicfox, Inc)
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+import { gtmEvent } from './event';
 
 export function gtmPageView(remainingData: object) {
   gtmEvent('PromoEventPageView', remainingData);
@@ -88,20 +68,4 @@ export function promoEventSubscribe(remainingData: object) {
 
 export function promoEventViewContent(remainingData: object) {
   gtmEvent('PromoEventViewContent', remainingData);
-}
-
-/*
- * @description Book an event for Tincre's Google Tag Manager
- * @param eventName the string event name starting with 'PromoEvent'
- * @param eventData an object with data for Google Tag Manager consumption
- * @returns void
- */
-function gtmEvent(eventName: string, eventData: object) {
-  const eventId = generateEventIdClientSide();
-  window.dataLayer?.push({
-    event: eventName,
-    'x-fb-event_id': eventId,
-    transactionId: eventId,
-    ...eventData,
-  });
 }
