@@ -11,7 +11,7 @@ export function generateEventIdClientSide(): string | undefined {
   }
 }
 export const ALLOWED_PROMO_EVENTS = [
-  'PageView',
+  'PromoEventPageView',
   'PromoEventAddPaymentInfo',
   'PromoEventAddToCart',
   'PromoEventCompleteRegistration',
@@ -26,73 +26,69 @@ export const ALLOWED_PROMO_EVENTS = [
   'PromoEventViewContent',
 ];
 
-export const gtmPageView = (remainingData: object) => {
+export function gtmPageView(remainingData: object) {
   gtmEvent('PromoEventPageView', remainingData);
-};
+}
 
-export const pageView = (remainingData: object) => {
-  gtmEvent('PageView', remainingData);
-};
-
-export const promoEventPromoButtonClick = (remainingData: object) => {
+export function promoEventPromoButtonClick(remainingData: object) {
   gtmEvent('PromoEventPromoButtonClick', remainingData);
-};
+}
 
-export const promoEventButtonClick = (remainingData: object) => {
+export function promoEventButtonClick(remainingData: object) {
   gtmEvent('PromoEventLoginButtonClick', remainingData);
-};
+}
 
-export const promoEventSignupButtonClick = (remainingData: object) => {
+export function promoEventSignupButtonClick(remainingData: object) {
   gtmEvent('PromoEventSignupButtonClick', remainingData);
-};
+}
 
-export const promoEventAddPaymentInfo = (remainingData: object) => {
+export function promoEventAddPaymentInfo(remainingData: object) {
   gtmEvent('PromoEventAddPaymentInfo', remainingData);
-};
+}
 
-export const promoEventDonate = (remainingData: object) => {
+export function promoEventDonate(remainingData: object) {
   gtmEvent('PromoEventDonate', remainingData);
-};
+}
 
-export const promoEventAddToCart = (remainingData: object) => {
+export function promoEventAddToCart(remainingData: object) {
   gtmEvent('PromoEventAddToCart', remainingData);
-};
+}
 
-export const promoEventCompleteRegistration = (remainingData: object) => {
+export function promoEventCompleteRegistration(remainingData: object) {
   gtmEvent('PromoEventCompleteRegistration', remainingData);
-};
+}
 
-export const promoEventInitiateCheckout = (remainingData: object) => {
+export function promoEventInitiateCheckout(remainingData: object) {
   gtmEvent('PromoEventInitiateCheckout', remainingData);
-};
+}
 
-export const promoEventLead = (remainingData: object) => {
+export function promoEventLead(remainingData: object) {
   gtmEvent('PromoEventLead', remainingData);
-};
+}
 
-export const promoEventPurchase = (remainingData: object) => {
+export function promoEventPurchase(remainingData: object) {
   gtmEvent('PromoEventPurchase', remainingData);
-};
+}
 
-export const promoEventSearch = (remainingData: object) => {
+export function promoEventSearch(remainingData: object) {
   gtmEvent('PromoEventSearch', remainingData);
-};
+}
 
-export const promoEventStartTrial = (remainingData: object) => {
+export function promoEventStartTrial(remainingData: object) {
   gtmEvent('PromoEventStartTrial', remainingData);
-};
+}
 
-export const promoEventSubmitApplication = (remainingData: object) => {
+export function promoEventSubmitApplication(remainingData: object) {
   gtmEvent('PromoEventSubmitApplication', remainingData);
-};
+}
 
-export const promoEventSubscribe = (remainingData: object) => {
+export function promoEventSubscribe(remainingData: object) {
   gtmEvent('PromoEventSubscribe', remainingData);
-};
+}
 
-export const promoEventViewContent = (remainingData: object) => {
+export function promoEventViewContent(remainingData: object) {
   gtmEvent('PromoEventViewContent', remainingData);
-};
+}
 
 /*
  * @description Book an event for Tincre's Google Tag Manager
