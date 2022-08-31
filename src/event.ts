@@ -1,5 +1,12 @@
+/* Copyright Tincre (Musicfox, Inc)
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 import { generateEventIdClientSide } from './eventId';
-import { ALLOWED_PROMO_EVENTS } from './constants.ts';
+import { ALLOWED_PROMO_EVENTS } from './constants';
 
 /*
  * @description Book an event for Tincre's Google Tag Manager
@@ -8,11 +15,13 @@ import { ALLOWED_PROMO_EVENTS } from './constants.ts';
  * @returns void
  */
 export function gtmEvent(eventName: string, eventData: object) {
-  const eventId = generateEventIdClientSide();
-  window.dataLayer?.push({
-    event: eventName,
-    'x-fb-event_id': eventId,
-    transactionId: eventId,
-    ...eventData,
-  });
+  if (ALLOWED_PROMO_EVENTS.includes(eventName)) {
+    const eventId = generateEventIdClientSide();
+    window.dataLayer?.push({
+      event: eventName,
+      'x-fb-event_id': eventId,
+      transactionId: eventId,
+      ...eventData,
+    });
+  }
 }
