@@ -46,5 +46,14 @@
       "path": "dist/promo-sync-gtag.esm.js",
       "limit": "10 KB"
     }
-  ]
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.0.1",
+    "@tsconfig/recommended": "^1.0.1",
+    "dts-cli": "^1.6.0",
+    "husky": "^8.0.1",
+    "size-limit": "^8.0.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.2"
+  }
 }
