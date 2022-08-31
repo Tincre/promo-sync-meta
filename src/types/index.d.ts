@@ -1,14 +1,14 @@
 export {};
 
 interface GtmDataProps {
-  "start": string;
-  "uniqueEventId": string;
+  start: string;
+  uniqueEventId: string;
 }
 interface GetGtm {
   get: (gtm: string) => GtmDataProps;
 }
 interface GtmDataLayer {
-  "dataLayer": GetGtm;
+  dataLayer: GetGtm;
 }
 interface GoogleTagManager {
   'GTM-57QS65R': GtmDataLayer;
