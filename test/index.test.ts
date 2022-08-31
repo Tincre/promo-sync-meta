@@ -1,4 +1,4 @@
-import { generateEventIdClientSide, sum } from '../src/index';
+import { generateEventIdClientSide } from '../src/index';
 beforeAll(() => {
   /* @ts-ignore */
   global.window = jest.fn();
@@ -28,10 +28,5 @@ describe('generateEventIdClientSide', () => {
     global.window = undefined;
 
     expect(generateEventIdClientSide()).toBe(undefined);
-  });
-});
-describe('sum', () => {
-  it('adds two numbers together', () => {
-    expect(sum(1, 1)).toEqual(2);
   });
 });
