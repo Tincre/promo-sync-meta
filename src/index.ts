@@ -94,7 +94,13 @@ export const promoEventViewContent = (remainingData: object) => {
   gtmEvent('PromoEventViewContent', remainingData);
 };
 
-const gtmEvent = (eventName: string, eventData: object) => {
+/*
+ * @description Book an event for Tincre's Google Tag Manager
+ * @param eventName the string event name starting with 'PromoEvent'
+ * @param eventData an object with data for Google Tag Manager consumption
+ * @returns void
+ */
+function gtmEvent(eventName: string, eventData: object) {
   const eventId = generateEventIdClientSide();
   window.dataLayer?.push({
     event: eventName,
@@ -102,4 +108,4 @@ const gtmEvent = (eventName: string, eventData: object) => {
     transactionId: eventId,
     ...eventData,
   });
-};
+}
