@@ -7,15 +7,16 @@ interface GtmDataProps {
 interface GetGtm {
   get: (gtm: string) => GtmDataProps;
 }
-interface DataLayer {
+interface GtmDataLayer {
   "dataLayer": GetGtm;
 }
 interface GoogleTagManager {
-  'GTM-57QS65R': DataLayer;
+  'GTM-57QS65R': GtmDataLayer;
 }
+
 declare global {
   interface Window {
     google_tag_manager?: GoogleTagManager;
-    dataLayer?: object;
+    dataLayer?: Array<object>;
   }
 }
