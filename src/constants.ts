@@ -1,0 +1,15 @@
+export const ALLOWED_PROMO_EVENTS = [
+  'PromoEventPageView',
+  'PromoEventAddPaymentInfo',
+  'PromoEventAddToCart',
+  'PromoEventCompleteRegistration',
+  'PromoEventDonate',
+  'PromoEventInitiateCheckout',
+  'PromoEventLead',
+  'PromoEventPurchase',
+  'PromoEventSearch',
+  'PromoEventStartTrial',
+  'PromoEventSubmitApplication',
+  'PromoEventSubscribe',
+  'PromoEventViewContent',
+];
