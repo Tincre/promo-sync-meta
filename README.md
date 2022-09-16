@@ -22,9 +22,7 @@ npm install @tincre/promo-sync-meta # --save-dev if you want it as a dev dep
 ### Setup
 As high as possible in the `<head>` tag on each page of your site add the following:
 
-```js
-import { promoGtag } from '@tincre/promo-sync-gtag';
-
+```html
 <script type="module" src="https://unpkg.com/browse/@tincre/promo-sync-meta@0.0.4/dist/promo-sync-meta.esm.js">
   import { loadPromoGtag } from '@tincre/promo-sync-gtag';
   loadPromoGtag();
@@ -54,7 +52,7 @@ export default function MyApp({component, pageProps,}) {
 
 > 🌶️ You'll need to use an event to fire anything here, unlike importing our `promoGtag` from [`promo-sync-gtag` library](https://github.com/Tincre/promo-sync-gtag).
 
-### Usage 
+### Event Usage 
 
 To use a meta event simply import it into your framework of choice and fire the function. 
 
