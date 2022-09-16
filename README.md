@@ -12,33 +12,47 @@ Use your favorite package manager to rock installation of `promo-sync-meta`.
 ```
 yarn add @tincre/promo-sync-meta # -D if you want this as a dev dep
 ```
+
 ### Npm
 
 ```
 npm install @tincre/promo-sync-meta # --save-dev if you want it as a dev dep
 ```
 
-### Environment variables 
+### Setup
+As high as possible in the `<head>` tag on each page of your site add the following:
 
-You'll need the following environment variables available in Node.js:
-
-- `PROMO_CLIENT_ID`
-- `PROMO_CLIENT_SECRET` 
-- `PROMO_APP_ID`
-- `PROMO_API_KEY` (optional)
-
-These values can be found in the [Tincre.dev Dashboard](https://tincre.dev/dashboard)
-after you're logged in and have created at least one app. 
-
-#### `.env.local` Example
-
-```env 
-PROMO_API_KEY=
-PROMO_CLIENT_ID=
-PROMO_APP_ID=
-PROMO_CLIENT_SECRET=
+```html
+<script type="module" src="https://unpkg.com/browse/@tincre/promo-sync-meta@0.0.4/dist/promo-sync-meta.esm.js">
+  import { loadPromoGtag } from '@tincre/promo-sync-gtag';
+  loadPromoGtag();
+</script>
 ```
-### Usage 
+
+As usual you can grab our minified build and link to that as a universal script, loaded prior to the code snippet directly above (and without the `import` statement).
+
+#### Next.js setup 
+As we at [Tincre](https://tincre.com) are proud [Next.js](https://nextjs.org) users, below is a snippet you can use for performant Next.js sites.
+
+In your `pages/_app.{js,jsx,ts,tsx}` file:
+```jsx 
+import Script from 'next/script';
+import { promoPixel } from '@tincre/promo-sync-meta';
+
+export default function MyApp({component, pageProps,}) {
+
+  return (
+    <>
+      <Script id="promo-meta-pixel" strategy={"afterInteractive"}>{promoPixel}</Script>
+      <Component {...pageProps} />
+    </>
+  )
+}
+```
+
+> 🌶️ You'll need to use an event to fire anything here, unlike importing our `promoGtag` from [`promo-sync-gtag` library](https://github.com/Tincre/promo-sync-gtag).
+
+### Event Usage 
 
 To use a meta event simply import it into your framework of choice and fire the function. 
 

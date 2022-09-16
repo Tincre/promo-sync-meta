@@ -9,19 +9,23 @@ import { generateEventIdClientSide } from './eventId';
 import { ALLOWED_PROMO_EVENTS } from './constants';
 
 /*
- * @description Book an event for Tincre's Google Tag Manager
+ * @description Book an event for Tincre's Meta Pixel
  * @param eventName the string event name starting with 'PromoEvent'
  * @param eventData an object with data for Google Tag Manager consumption
  * @returns void
  */
-export function gtmEvent(eventName: string, eventData: object) {
+export function metaEvent(eventName: string, eventData: object) {
   if (ALLOWED_PROMO_EVENTS.includes(eventName)) {
-    const eventId = generateEventIdClientSide();
-    window.dataLayer?.push({
-      event: eventName,
-      'x-fb-event_id': eventId,
-      transactionId: eventId,
-      ...eventData,
-    });
+    // @ts-ignore
+    const eventId = eventData?.transactionId || generateEventIdClientSide();
+    if ('fbq' in window) {
+      console.debug(`Recording event ${eventId}`);
+      // @ts-ignore
+      window?.fbq('trackCustom', eventName, {
+        eventId: `${eventId}`,
+        external_id: `${eventId}`,
+        ...eventData,
+      });
+    }
   }
 }

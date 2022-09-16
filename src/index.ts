@@ -4,71 +4,98 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-import { gtmEvent } from './event';
+import { metaEvent } from './event';
 
-export function gtmPageView(remainingData: object) {
-  gtmEvent('PromoEventPageView', remainingData);
+export const PROMO_GTM_TAG = 'GTM-57QS65R';
+export const PROMO_META_ID = '1512583189155903';
+
+export const promoPixel = `!function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '${PROMO_META_ID}');`;
+
+export function generateEventId(gtmTagId?: string | undefined) {
+  let gtmContainerId = gtmTagId || PROMO_GTM_TAG;
+  if (typeof window !== 'undefined') {
+    if (typeof window?.google_tag_manager !== 'undefined') {
+      /* @ts-ignore */
+      var gtmData =
+        /* @ts-ignore */
+        window.google_tag_manager[gtmContainerId].dataLayer.get('gtm');
+      return gtmData.start + '.' + gtmData.uniqueEventId;
+    } else {
+      return window.crypto.randomUUID().replaceAll('-', '');
+    }
+  }
 }
 export function promoEventPageView(remainingData: object) {
-  gtmPageView(remainingData);
+  metaEvent('PromoEventPageView', remainingData);
+}
+export function metaPageView(remainingData: object) {
+  metaEvent('PageView', remainingData);
 }
 
 export function promoEventPromoButtonClick(remainingData: object) {
-  gtmEvent('PromoEventPromoButtonClick', remainingData);
+  metaEvent('PromoEventPromoButtonClick', remainingData);
 }
 
 export function promoEventButtonClick(remainingData: object) {
-  gtmEvent('PromoEventLoginButtonClick', remainingData);
+  metaEvent('PromoEventLoginButtonClick', remainingData);
 }
 
 export function promoEventSignupButtonClick(remainingData: object) {
-  gtmEvent('PromoEventSignupButtonClick', remainingData);
+  metaEvent('PromoEventSignupButtonClick', remainingData);
 }
 
 export function promoEventAddPaymentInfo(remainingData: object) {
-  gtmEvent('PromoEventAddPaymentInfo', remainingData);
+  metaEvent('PromoEventAddPaymentInfo', remainingData);
 }
 
 export function promoEventDonate(remainingData: object) {
-  gtmEvent('PromoEventDonate', remainingData);
+  metaEvent('PromoEventDonate', remainingData);
 }
 
 export function promoEventAddToCart(remainingData: object) {
-  gtmEvent('PromoEventAddToCart', remainingData);
+  metaEvent('PromoEventAddToCart', remainingData);
 }
 
 export function promoEventCompleteRegistration(remainingData: object) {
-  gtmEvent('PromoEventCompleteRegistration', remainingData);
+  metaEvent('PromoEventCompleteRegistration', remainingData);
 }
 
 export function promoEventInitiateCheckout(remainingData: object) {
-  gtmEvent('PromoEventInitiateCheckout', remainingData);
+  metaEvent('PromoEventInitiateCheckout', remainingData);
 }
 
 export function promoEventLead(remainingData: object) {
-  gtmEvent('PromoEventLead', remainingData);
+  metaEvent('PromoEventLead', remainingData);
 }
 
 export function promoEventPurchase(remainingData: object) {
-  gtmEvent('PromoEventPurchase', remainingData);
+  metaEvent('PromoEventPurchase', remainingData);
 }
 
 export function promoEventSearch(remainingData: object) {
-  gtmEvent('PromoEventSearch', remainingData);
+  metaEvent('PromoEventSearch', remainingData);
 }
 
 export function promoEventStartTrial(remainingData: object) {
-  gtmEvent('PromoEventStartTrial', remainingData);
+  metaEvent('PromoEventStartTrial', remainingData);
 }
 
 export function promoEventSubmitApplication(remainingData: object) {
-  gtmEvent('PromoEventSubmitApplication', remainingData);
+  metaEvent('PromoEventSubmitApplication', remainingData);
 }
 
 export function promoEventSubscribe(remainingData: object) {
-  gtmEvent('PromoEventSubscribe', remainingData);
+  metaEvent('PromoEventSubscribe', remainingData);
 }
 
 export function promoEventViewContent(remainingData: object) {
-  gtmEvent('PromoEventViewContent', remainingData);
+  metaEvent('PromoEventViewContent', remainingData);
 }
