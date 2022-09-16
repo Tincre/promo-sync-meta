@@ -3,6 +3,9 @@
  */
 import crypto from 'crypto';
 import {
+  promoPixel,
+  generateEventId,
+  metaPageView,
   promoEventButtonClick,
   promoEventPromoButtonClick,
   promoEventSignupButtonClick,
@@ -25,24 +28,34 @@ beforeAll(() => {
   /* @ts-ignore */
   global.window = jest.fn();
   window['dataLayer'] = [];
-  const testUuid = 'randomUUIDvalue';
+  const testUuid: string = 'randomUUIDvalue';
   window['crypto'] = {
     randomUUID: () => testUuid,
     getRandomValues: (arr: any) => crypto.getRandomValues(arr.length),
     subtle: crypto.subtle,
   };
+  // @ts-ignore
+  window['fbq'] = (a: any, b: any, c: any) => {};
 });
 
-describe('gtmEventPageView', () => {
+describe('promoPixel', () => {
+  it('should be a string', () => {
+    expect(typeof promoPixel).toBe('string');
+  });
+});
+
+describe('generateEventId', () => {
+  it('generates an id', () => {
+    expect(typeof generateEventId()).toBe('string');
+  });
+});
+
+describe('metaEventPageView', () => {
   it('executes with a data prop object', () => {
-    expect(promoEventPageView({ pid: 'abcdefgh' })).toBe(undefined);
+    expect(metaPageView({})).toBe(undefined);
   });
 });
-describe('gtmEventPageView', () => {
-  it('executes', () => {
-    expect(promoEventPageView({})).toBe(undefined);
-  });
-});
+
 describe('PromoEventPageView', () => {
   it('executes', () => {
     expect(promoEventPageView({})).toBe(undefined);
